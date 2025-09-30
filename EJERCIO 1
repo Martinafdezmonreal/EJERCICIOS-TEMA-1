@@ -1,0 +1,11 @@
+mensaje_cifrado = "ANITRAM-YOS!!"
+mensaje_cifrado_limpio = ""
+for letra in mensaje_cifrado:
+    if letra.isalpha():
+        mensaje_cifrado_limpio += letra
+
+mensaje_descifrado = ""
+for letra in mensaje_cifrado_limpio:
+    mensaje_descifrado = letra + mensaje_descifrado
+
+print(mensaje_descifrado)
