@@ -1,0 +1,15 @@
+# Programa que simula el ahorro mensual de una persona
+# Solicitar datos al usuario
+cantidad_inicial = float(input("Introduce la cantidad inicial (€): "))
+cantidad_mensual = float(input("Introduce la cantidad que ahorras cada mes (€): "))
+numero_meses = int(input("Introduce el número de meses: "))
+
+# Calcular el total ahorrado
+total_ahorrado = cantidad_inicial + cantidad_mensual * numero_meses
+
+# Mostrar el resultado
+print(f"El total ahorrado al final de {numero_meses} meses es: {total_ahorrado:.2f} €")
+
+# Felicitación si supera los 5000€
+if total_ahorrado > 5000:
+    print("¡Enhorabuena! Has superado los 5000€ de ahorro.")
