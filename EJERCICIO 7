@@ -1,0 +1,45 @@
+def analizar_url(url):
+    """
+    Recibe una URL y devuelve una tupla con:
+    - Protocolo (http, https)
+    - Dominio
+    - Nombre del recurso (si lo hay, None si no existe)
+    Maneja errores si la URL no es válida.
+    """
+    try:
+        # Asegurarse de que la URL tiene al menos protocolo y dominio
+        if not isinstance(url, str) or '://' not in url:
+            raise ValueError("URL inválida")
+
+        partes = url.split('://', 1)
+        protocolo = partes[0]
+        resto = partes[1]
+
+        # El dominio es lo que está antes del primer /
+        if '/' in resto:
+            dominio, recurso = resto.split('/', 1)
+            # El nombre del recurso es la última parte después del último /
+            nombre_recurso = recurso.split('/')[-1] if recurso else None
+            # Si termina en /, no hay recurso
+            if recurso.endswith('/'):
+                nombre_recurso = None
+        else:
+            dominio = resto
+            nombre_recurso = None
+
+        return protocolo, dominio, nombre_recurso
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return None
+
+# Ejemplo de uso:
+if __name__ == "__main__":
+    urls = [
+        "https://www.ejemplo.com/archivo.txt",
+        "http://dominio.org/carpeta/",
+        "https://sub.dominio.com",
+        "ftp://no-es-http.com/recurso"
+    ]
+    for url in urls:
+        print(f"{url} -> {analizar_url(url)}")
