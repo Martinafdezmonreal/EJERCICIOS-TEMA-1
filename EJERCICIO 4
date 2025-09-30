@@ -1,0 +1,27 @@
+def calcular_media(notas):
+    return sum(notas) / len(notas) if notas else 0
+
+def nota_mas_alta(notas):
+    return max(notas) if notas else None
+
+def nota_mas_baja(notas):
+    return min(notas) if notas else None
+
+def hay_suspensos(notas):
+    return any(nota < 5 for nota in notas)
+
+def main():
+    entrada = input("Introduce las notas separadas por espacios (entre 0 y 10): ")
+    notas = [float(n) for n in entrada.split() if n.replace('.', '', 1).isdigit()]
+    if not notas or any(n < 0 or n > 10 for n in notas):
+        print("Por favor, introduce solo notas válidas entre 0 y 10.")
+        return
+
+    print(f"Media: {calcular_media(notas):.2f}")
+    print(f"Nota más alta: {nota_mas_alta(notas)}")
+    print(f"Nota más baja: {nota_mas_baja(notas)}")
+    if hay_suspensos(notas):
+        print("¡Hay al menos una nota suspensa (<5)!")
+
+if __name__ == "__main__":
+    main()
